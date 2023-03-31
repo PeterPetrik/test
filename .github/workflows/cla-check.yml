@@ -7,8 +7,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Check
+    - name: Check CLA signature
       run: |
-        echo ${{ github.actor }}
- 
-
+        CLAFILE="./LICENSES/CLA-signed-list.md"
+        
+        if grep -q ${{ github.actor }} "$CLAFILE"; then
+          echo "CLA signed OK!"
+        else
+          echo "CLA is not signed for ${{ github.actor }}, please agree with CLA and add your username to $CLAFILE"
+          exit 1;
+        fi
