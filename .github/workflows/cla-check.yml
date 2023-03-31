@@ -1,0 +1,14 @@
+name: CLA-Check
+on: push
+
+jobs:
+  check-cla-sign:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check
+      run: |
+        echo ${{ github.actor }}
+ 
+
